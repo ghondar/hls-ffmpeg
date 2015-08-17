@@ -1,0 +1,28 @@
+{
+  "name": "hls-ffmpeg",
+  "version": "0.0.1",
+  "description": "Quick converter hls and ffmpeg resolutions",
+  "main": "hls-ffmpeg",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/abgv9221/hls-ffmpeg.git"
+  },
+  "keywords": [
+    "hls",
+    "ffmpeg",
+    "video",
+    "rtmp"
+  ],
+  "author": "Ghondar <abgv9221@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/abgv9221/hls-ffmpeg/issues"
+  },
+  "homepage": "https://github.com/abgv9221/hls-ffmpeg",
+  "dependencies": {
+    "lodash": "^3.10.1"
+  }
+}

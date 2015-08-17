@@ -1,0 +1,6 @@
+node_modules/
+test.mov
+test.mp4
+output/*
+!output/readme.md
+.DS_Store
