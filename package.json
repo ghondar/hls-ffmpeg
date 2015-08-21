@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/ghondar/hls-ffmpeg",
   "dependencies": {
+    "fs-extra": "^0.23.1",
     "lodash": "^3.10.1"
   }
 }
