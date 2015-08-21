@@ -249,6 +249,7 @@ then
 
   INPUTFILE=${INPUTFILE:-$1}
   SEGLENGTH=${SEGLENGTH:-$2}
+  OUTPUT_DIRECTORY=$3
   if ! [ -z "$3" ]
   then
     OUTPUT_DIRECTORY=$3

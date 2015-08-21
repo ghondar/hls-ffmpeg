@@ -122,7 +122,8 @@ exports.hls = function(json, callback){
 
    params = helpers.objectToArray(_.assign({
          '-i': json.input,
-         '-s': json.time
+         '-s': json.time,
+         '-o': json.output
       },params));
    
    push({bin: './HLS-Stream-Creator.sh', params: params, callback: callback});
