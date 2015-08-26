@@ -18,6 +18,7 @@ var formats = [{
 }];
 
 var count = 0;
+var hlsCount = 0;
 
 formats.forEach(function(format){
   format.name = format.input.split('.'+format.ext)[0];
@@ -42,20 +43,26 @@ formats.forEach(function(format){
   if(count == 0){
     format.output = path.join(pathVideo, format.name +'.mp4'); 
     hf.ffmpeg(format, function(err, data){
-      console.log(err||data)
+      // console.log(err||data)
+      console.log('historial', 1)
       var json = {
         input: format.output,
         time: '10',
         output: path.join(pathVideo, format.quality)
       }
       hf.hls(json, function(err, data){
-        console.log(err||data);
+        // console.log(err||data);
+        console.log('historial', 2)
         append({
           path: m3u8,
           pl: path.join(format.quality, 'pl.m3u8'),
           bandwidth: bandwidth,
           format: format.format
         })
+        hlsCount ++;
+        if(hlsCount === formats.length){
+          console.log('historial', 'ultimo')
+        }
         if(count === formats.length)
           count = 0;
       })
@@ -63,20 +70,26 @@ formats.forEach(function(format){
   }else{
     format.output = path.join(pathVideo, format.name + '-'+ format.quality +'.mp4');
     hf.ffmpeg(format, function(err, data){
-      console.log(err||data)
+      // console.log(err||data)
+      console.log('historial', 3)
       var json = {
         input: format.output,
         time: '10',
         output: path.join(pathVideo, format.quality)
       }
       hf.hls(json, function(err, data){
-        console.log(err||data);
+        // console.log(err||data);
+        console.log('historial', 4)
         append({
           path: m3u8,
           pl: path.join(format.quality, 'pl.m3u8'),
           bandwidth: bandwidth,
           format: format.format
         });
+        hlsCount ++;
+        if(hlsCount === formats.length){
+          console.log('historial', 'ultimo')
+        }
         if(count === formats.length)
           count = 0;
       })

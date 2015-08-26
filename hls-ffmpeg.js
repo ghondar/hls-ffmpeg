@@ -91,15 +91,17 @@ exports.ffmpeg = function (json, callback) {
    params = helpers.objectToArray(_.assign({
          '-i': json.input,            
          '-vcodec': 'libx264',
-         '-crf': json.quality || '30',
+         '-crf': json.crf || '30',
          '-threads': json.threads || '0',
          '-s': json.format,
          '-acodec': 'copy',
-         '-y': json.output
+         '-y': json.output,
+         '-ss': '00:00:01.00',
+         '-vframes': '1'
       },params));
-   
+   if(json.splash)
+    params.push(json.splash);
    push({bin: 'ffmpeg', params: params, callback: callback});
-
 };
 
 /**
