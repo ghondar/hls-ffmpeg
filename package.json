@@ -1,6 +1,6 @@
 {
   "name": "hls-ffmpeg",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Quick converter hls and ffmpeg resolutions",
   "main": "hls-ffmpeg",
   "scripts": {
