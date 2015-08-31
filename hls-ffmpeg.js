@@ -94,7 +94,7 @@ exports.ffmpeg = function (json, callback) {
          '-crf': json.crf || '30',
          '-threads': json.threads || '0',
          '-s': json.format,
-         '-acodec': 'copy',
+         '-acodec': 'libfdk_aac',
          '-y': json.output,
          '-ss': '00:00:01.00',
          '-vframes': '1'
