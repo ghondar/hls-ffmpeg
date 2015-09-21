@@ -6,15 +6,25 @@ var fs = require('fs');
 var output = path.join(__dirname, 'output', 'prueba')
 
 var formats = [{
-  input: 'test.mov',
-  ext: 'mov',
+  input: 'test.mp4',
+  ext: 'mp4',
   quality: '360p',
   format: '640x360'
 },{
-  input: 'test.mov',
-  ext: 'mov',
+  input: 'test.mp4',
+  ext: 'mp4',
   quality: '480p',
   format: '848x480'
+},{
+  input: 'test.mp4',
+  ext: 'mp4',
+  quality: '720p',
+  format: '1280x720'
+},{
+  input: 'test.mp4',
+  ext: 'mp4',
+  quality: '1080p',
+  format: '1920x1080'
 }];
 
 var count = 0;
@@ -41,6 +51,8 @@ formats.forEach(function(format){
   }
   fse.mkdirsSync(pathVideo);
   if(count == 0){
+    format.splash = 'imagen.png'
+    format.thumbnail = 'imagen-thumbnail.png'
     format.output = path.join(pathVideo, format.name +'.mp4'); 
     hf.ffmpeg(format, function(err, data){
       // console.log(err||data)

@@ -86,21 +86,16 @@ exports.exec = function (bin, params, callback) {
 exports.ffmpeg = function (json, callback) {
    if(Object.keys(json).length < 3)
       return callback('Falta Paramatros')
-   var params = {};
+    console.log(json)
+   var crf = json.crf || '50';
+   var threads = json.threads || '0';
 
-   params = helpers.objectToArray(_.assign({
-         '-i': json.input,            
-         '-vcodec': 'libx264',
-         '-crf': json.crf || '30',
-         '-threads': json.threads || '0',
-         '-s': json.format,
-         '-acodec': 'libfdk_aac',
-         '-y': json.output,
-         '-ss': '00:00:01.00',
-         '-vframes': '1'
-      },params));
-   if(json.splash)
-    params.push(json.splash);
+   var params = "-i " + json.input + " -vcodec libx264 -crf " + crf +
+                " -threads " + threads + " -s " + json.format + 
+                " -acodec libfdk_aac -y " + json.output + " -s 640x360 -ss 00:00:01.00 -vframes 1 -y " +
+                json.thumbnail + " -ss 00:00:01.00 -vframes 1 -y " + json.splash;
+   params = params.split(" ");
+   console.log(json)
    push({bin: 'ffmpeg', params: params, callback: callback});
 };
 
@@ -117,7 +112,6 @@ exports.ffmpeg = function (json, callback) {
  */
 
 exports.hls = function(json, callback){
-
    if(Object.keys(json).length < 2)
       return callback('Falta Paramatros')
    var params = {};
