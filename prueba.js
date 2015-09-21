@@ -6,23 +6,23 @@ var fs = require('fs');
 var output = path.join(__dirname, 'output', 'prueba')
 
 var formats = [{
-  input: 'test.mp4',
-  ext: 'mp4',
+  input: 'videoAhora.mov',
+  ext: 'mov',
   quality: '360p',
   format: '640x360'
 },{
-  input: 'test.mp4',
-  ext: 'mp4',
+  input: 'videoAhora.mov',
+  ext: 'mov',
   quality: '480p',
   format: '848x480'
 },{
-  input: 'test.mp4',
-  ext: 'mp4',
+  input: 'videoAhora.mov',
+  ext: 'mov',
   quality: '720p',
   format: '1280x720'
 },{
-  input: 'test.mp4',
-  ext: 'mp4',
+  input: 'videoAhora.mov',
+  ext: 'mov',
   quality: '1080p',
   format: '1920x1080'
 }];

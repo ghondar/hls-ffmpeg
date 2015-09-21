@@ -10,7 +10,7 @@ var path = require('path'),
     helpers = require('./helpers.js'),
     that = this,
     queue = exports.queue = [],
-    maxActive = 4, // Maximum of active jobs
+    maxActive = 10, // Maximum of active jobs
     active = 0;
 
 
@@ -86,16 +86,18 @@ exports.exec = function (bin, params, callback) {
 exports.ffmpeg = function (json, callback) {
    if(Object.keys(json).length < 3)
       return callback('Falta Paramatros')
-    console.log(json)
-   var crf = json.crf || '50';
+   var crf = json.crf || '15';
    var threads = json.threads || '0';
 
    var params = "-i " + json.input + " -vcodec libx264 -crf " + crf +
-                " -threads " + threads + " -s " + json.format + 
-                " -acodec libfdk_aac -y " + json.output + " -s 640x360 -ss 00:00:01.00 -vframes 1 -y " +
-                json.thumbnail + " -ss 00:00:01.00 -vframes 1 -y " + json.splash;
+                " -threads " + threads + " -s " + json.format + " -acodec libfdk_aac -y " + json.output;
+   if(json.thumbnail)
+    params = params + " -s 640x360 -ss 00:00:01.00 -vframes 1 -y " + json.thumbnail;
+   
+   if(json.splash)
+    params  = params + " -ss 00:00:01.00 -vframes 1 -y " + json.splash;
+
    params = params.split(" ");
-   console.log(json)
    push({bin: 'ffmpeg', params: params, callback: callback});
 };
 
