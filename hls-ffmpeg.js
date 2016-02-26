@@ -30,6 +30,20 @@ function next () {
    }
 }
 
+var formats = [{
+  quality: '360p',
+  format: '640x360'
+},{
+  quality: '480p',
+  format: '848x480'
+},{
+  quality: '720p',
+  format: '1280x720'
+},{
+  quality: '1080p',
+  format: '1920x1080'
+}]
+
 /**
  * Description:
  *    calls ffmpeg or hls with the specified flags and returns the output
@@ -144,3 +158,17 @@ exports.getMetadata = function (input, callback) {
       }
    });
 };
+
+exports.getLimitFormats = function (input, callback) {
+  this.getMetadata(input, function(error, data){
+    var height = data.streams[0].coded_height
+
+    var index = height >= 1080 ? 3 : height >= 720 ? 2 : height >= 480 ? 1 : 0
+
+    var newFormats = formats.filter(function(format, i){
+      return i <= index
+    })
+
+    callback(error, newFormats)
+  })
+}
