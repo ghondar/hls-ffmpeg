@@ -129,6 +129,7 @@ $FFMPEG -i "$infile" \
     -segment_list "$playlist_name" \
     -segment_time "$SEGLENGTH" \
     -segment_format mpeg_ts \
+    -sn \
     $bitrate \
     $FFMPEG_ADDITIONAL \
     $FFMPEG_FLAGS \

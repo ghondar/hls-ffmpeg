@@ -100,11 +100,12 @@ exports.exec = function (bin, params, callback) {
 exports.ffmpeg = function (json, callback) {
    if(Object.keys(json).length < 3)
       return callback('Falta Paramatros')
-   var crf = json.crf || '15';
+   var crf = json.crf || '14';
    var threads = json.threads || '0';
 
    var params = "-i " + json.input + " -vcodec libx264 -crf " + crf +
-                " -threads " + threads + " -s " + json.format + " -acodec libfdk_aac -y " + json.output;
+                " -threads " + threads + " -s " + json.format + " -acodec libfdk_aac -y " + json.output +
+                " -sn";
    if(json.thumbnail)
     params = params + " -s 640x360 -ss 00:00:01.00 -vframes 1 -y " + json.thumbnail;
    
